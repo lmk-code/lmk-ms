@@ -1,0 +1,10 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.springframework.boot.context.properties.ConfigurationBeanFactoryMetadata, \
+  com.lmk.ms.common.exception.handler.MsExceptionHandler,\
+  com.lmk.ms.autoconfigure.cloud.CloudAutoconfigure,\
+  com.lmk.ms.autoconfigure.web.WebAutoconfigure,\
+  com.lmk.ms.autoconfigure.gateway.GatewayAutoconfigure,\
+  com.lmk.ms.autoconfigure.auth.AuthAutoconfigure,\
+  com.lmk.ms.autoconfigure.cache.CacheAutoconfigure,\
+  com.lmk.ms.autoconfigure.knife4j.Knife4jAutoconfigure,\
+  com.lmk.ms.autoconfigure.mybatis.MybatisPlusAutoconfigure
