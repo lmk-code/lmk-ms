@@ -1,13 +1,11 @@
 package com.lmk.ms.autoconfigure.gateway;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.lmk.ms.autoconfigure.auth.AuthProperties;
-import com.lmk.ms.common.mvc.controller.K8SController;
 import com.lmk.ms.gateway.filter.AuthorizeGatewayFilterFactory;
 
 /**
@@ -43,9 +41,9 @@ public class GatewayAutoconfigure {
      * 导入K8S心跳检测
      * @return
      */
-    @Bean
+    /*@Bean
     @ConditionalOnMissingBean(K8SController.class)
     public K8SController k8SController(){
         return new K8SController();
-    }
+    }*/
 }
