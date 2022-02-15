@@ -65,7 +65,7 @@ public class ${entity.entityName} extends PkEntity<Long> {
 	public ${entity.entityName}() {
 	}
 
-	public ${entity.entityName}(Integer id) {
+	public ${entity.entityName}(Long id) {
 		this.id = id;
 	}
 }
