@@ -14,7 +14,7 @@ import com.lmk.ms.ct.code.config.CodeConfig;
 
 /**
  * 数据库表工具类
- * @author zhudefu@rockontrol.com
+ * @author laomake@hotmail.com
  * @version 1.0
  * @date 2021/10/05
  */

@@ -26,7 +26,7 @@ import com.lmk.ms.common.utils.encrypt.TextEncrypt;
 
 /**
  * 基类控制器
- * @author zhudefu@rockontrol.com
+ * @author laomake@hotmail.com
  * @version 1.0
  * @date 2021/07/12
  */

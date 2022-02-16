@@ -2,7 +2,7 @@ package com.lmk.ms.ct.code.config;
 
 /**
  * 数据库操作语句
- * @author zhudefu@rockontrol.com
+ * @author laomake@hotmail.com
  * @version 1.0
  * @date 2022/02/15
  */
@@ -86,7 +86,7 @@ public class DbTools {
 
     /**
      * 获取统计主键的数目语句
-     * @author zhudefu@rockontrol.com
+     * @author laomake@hotmail.com
      * @version 1.0
      * @date 2022/02/15
      */
@@ -105,7 +105,7 @@ public class DbTools {
 
     /**
      * 获取PostgreSQL查询表主键语句
-     * @author zhudefu@rockontrol.com
+     * @author laomake@hotmail.com
      * @version 1.0
      * @date 2022/02/15
      */
@@ -115,7 +115,7 @@ public class DbTools {
 
     /**
      * 获取查询表字段语句
-     * @author zhudefu@rockontrol.com
+     * @author laomake@hotmail.com
      * @version 1.0
      * @date 2022/02/15
      */
@@ -134,7 +134,7 @@ public class DbTools {
 
     /**
      * 获取查询所有外键语句
-     * @author zhudefu@rockontrol.com
+     * @author laomake@hotmail.com
      * @version 1.0
      * @date 2022/02/15
      */
@@ -153,7 +153,7 @@ public class DbTools {
 
     /**
      * 获取查询多对多中间表的Key语句
-     * @author zhudefu@rockontrol.com
+     * @author laomake@hotmail.com
      * @version 1.0
      * @date 2022/02/15
      */
@@ -163,7 +163,7 @@ public class DbTools {
 
     /**
      * 获取查询多对多中间表的Key语句
-     * @author zhudefu@rockontrol.com
+     * @author laomake@hotmail.com
      * @version 1.0
      * @date 2022/02/15
      */
@@ -173,7 +173,7 @@ public class DbTools {
 
     /**
      * MySQL配置
-     * @author zhudefu@rockontrol.com
+     * @author laomake@hotmail.com
      * @version 1.0
      * @date 2022/02/15
      */
@@ -203,7 +203,7 @@ public class DbTools {
 
     /**
      * PostgreSQL配置
-     * @author zhudefu@rockontrol.com
+     * @author laomake@hotmail.com
      * @version 1.0
      * @date 2022/02/15
      */

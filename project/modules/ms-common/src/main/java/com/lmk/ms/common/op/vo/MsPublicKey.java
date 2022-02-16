@@ -2,7 +2,7 @@ package com.lmk.ms.common.op.vo;
 
 /**
  * 用于前端加密的密钥对
- * @author zhudefu@rockontrol.com
+ * @author laomake@hotmail.com
  * @version 1.0
  * @date 2022/02/15
  */

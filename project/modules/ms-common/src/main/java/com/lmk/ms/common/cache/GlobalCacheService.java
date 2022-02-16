@@ -8,7 +8,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 /**
  * 全局缓存服务
  * 只封装了常用操作，对于列表、哈希等操作可以自行通过RedisTemplate完成
- * @author zhudefu@rockontrol.com
+ * @author laomake@hotmail.com
  * @version 1.0
  * @date 2021/07/13
  */
