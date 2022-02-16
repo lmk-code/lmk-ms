@@ -14,8 +14,8 @@
         <!-- MS 版本 -->
         <ms.version>1.0-SNAPSHOT</ms.version>
 
-        <spring-boot.version>2.6.3</spring-boot.version>
-        <spring-cloud.version>2021.0.0</spring-cloud.version>
+        <spring-boot.version>2.5.9</spring-boot.version>
+        <spring-cloud.version>2020.0.4</spring-cloud.version>
         <spring-cloud.alibaba.version>2021.1</spring-cloud.alibaba.version>
         <nacos-config-spring-boot.version>0.2.10</nacos-config-spring-boot.version>
         <mybatis.version>3.5.9</mybatis.version>
