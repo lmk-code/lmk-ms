@@ -60,12 +60,12 @@ public class MsAuthService {
         JwtToken jwtToken = (JwtToken) globalCacheService.get(key);
         if(jwtToken == null){
             JwtUser user = new JwtUser(loginUser);
-            jwtToken = JwtUtils.getToken(user, jwtProperties.getExpiration(), jwtProperties.getKeyPair().getPrivate());
-            globalCacheService.set(key, jwtToken, jwtProperties.getExpiration(), TimeUnit.SECONDS);
+            jwtToken = JwtUtils.getToken(user, jwtProperties);
+            globalCacheService.set(key, jwtToken, jwtProperties.getAccessTokenExpiration(), TimeUnit.SECONDS);
 
             // 添加用户信息缓存
             key = RedisKey.KEY_JWT_USER + user.getId();
-            globalCacheService.set(key, loginUser, jwtProperties.getExpiration(), TimeUnit.SECONDS);
+            globalCacheService.set(key, loginUser, jwtProperties.getAccessTokenExpiration(), TimeUnit.SECONDS);
         }
 
         return jwtToken;
@@ -77,7 +77,7 @@ public class MsAuthService {
      * @return
      */
     public JwtToken refreshToken(String refreshToken) {
-        return JwtUtils.refreshToken(refreshToken, jwtProperties.getExpiration(), jwtProperties.getKeyPair());
+        return JwtUtils.refreshToken(refreshToken, jwtProperties);
     }
 
     /**

@@ -18,12 +18,6 @@ public class JwtProperties {
     /** Cookie配置 */
     private CookieProperties cookie;
 
-    /** 是否使用微精灵的Token校验 */
-    private Boolean useWgToken = false;
-
-    /** 是否使用IDP的Token校验 */
-    private Boolean useIdpToken = false;
-
     /** 认证要求的请求头部名称，默认: Authorization */
     private String headerName = "Authorization";
 
@@ -36,8 +30,11 @@ public class JwtProperties {
     /** 登录成功后向HTTP请求头中添加用户手机号 */
     private String headerUserMobile = Constants.HEADER_USER_MOBILE;
 
-    /** token失效时长，单位: 秒，默认: 一小时 */
-    private Long expiration = 3600L;
+    /** accessToken失效时长，单位: 秒，默认: 一小时 */
+    private Long accessTokenExpiration = 3600L;
+
+    /** refreshToken失效时长，单位: 秒，默认: 7天 */
+    private Long refreshTokenExpiration = 604800L;
 
     /** jwt公钥 */
     private String publicKey;
@@ -96,12 +93,28 @@ public class JwtProperties {
         this.headerUserId = headerUserId;
     }
 
-    public Long getExpiration() {
-        return expiration;
+    public String getHeaderUserMobile() {
+        return headerUserMobile;
     }
 
-    public void setExpiration(Long expiration) {
-        this.expiration = expiration;
+    public void setHeaderUserMobile(String headerUserMobile) {
+        this.headerUserMobile = headerUserMobile;
+    }
+
+    public Long getAccessTokenExpiration() {
+        return accessTokenExpiration;
+    }
+
+    public void setAccessTokenExpiration(Long accessTokenExpiration) {
+        this.accessTokenExpiration = accessTokenExpiration;
+    }
+
+    public Long getRefreshTokenExpiration() {
+        return refreshTokenExpiration;
+    }
+
+    public void setRefreshTokenExpiration(Long refreshTokenExpiration) {
+        this.refreshTokenExpiration = refreshTokenExpiration;
     }
 
     public String getPublicKey() {

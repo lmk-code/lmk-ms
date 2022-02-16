@@ -1,16 +1,18 @@
 package com.lmk.ms.common.auth.utils;
 
-import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import com.lmk.ms.common.auth.vo.JwtToken;
 import com.lmk.ms.common.auth.vo.JwtUser;
+import com.lmk.ms.common.auth.config.JwtProperties;
 import com.lmk.ms.common.utils.JsonUtils;
 import com.lmk.ms.common.auth.vo.JwtTokenPayload;
 import com.lmk.ms.common.utils.encrypt.TextEncrypt;
@@ -31,52 +33,47 @@ public class JwtUtils {
     public static final String SUB_REFRESHER = "REFRESHER";
 
     /** 签发人 */
-    public static final String ISSUER = "MS";
+    public static final String ISSUER = "LMK";
 
     /**
-     * 从IDP访问令牌中提取用户ID，不进行签名验证
+     * 从访问令牌中提取用户ID，不进行签名验证
      * @param accessToken
      * @return
      */
-    public static String getIdpUserId(String accessToken){
+    public static String getUid(String accessToken){
         if(StringUtils.isBlank(accessToken)){
             return null;
         }
         accessToken = accessToken.substring(7);
         String str = TextEncrypt.fromBase64(accessToken.split("\\.")[1]);
 
-        JwtTokenPayload payload = JsonUtils.parseObject(str, JwtTokenPayload.class);
-        return payload.getAud();
-    }
-
-    /**
-     * 从微精灵访问令牌中提取用户ID，不进行签名验证
-     * @param accessToken
-     * @return
-     */
-    public static String getWgUserId(String accessToken){
-        return getIdpUserId(accessToken);
+        JwtTokenPayload payload = null;
+        try {
+            payload = JsonUtils.parseObject(str, JwtTokenPayload.class);
+            return payload.getJti();
+        } catch (Exception e) {
+            log.warn("解析Token失败：", e);
+        }
+        return null;
     }
 
     /**
      * 生成令牌
-     * @param user                      登录用户
-     * @param accessTokenExpiration     访问令牌失效时间
-     * @param privateKey                RSA私钥，用于签名
+     * @param user              登录用户
+     * @param jwtProperties     JWT配置
      * @return
      */
-    public static JwtToken getToken(JwtUser user, long accessTokenExpiration, PrivateKey privateKey) {
-        // 刷新令牌的有效时间 默认7天
-        long refreshTokenExpiration = 7 * 24 * 60 * 60L;
-
+    public static JwtToken getToken(JwtUser user, JwtProperties jwtProperties) {
         Date now = new Date();
-        Date accessExp = new Date(now.getTime() + accessTokenExpiration * 1000L);
-        Date refreshExp = new Date(now.getTime() + refreshTokenExpiration * 1000L);
+        Date accessExp = new Date(now.getTime() + jwtProperties.getAccessTokenExpiration() * 1000L);
+        Date refreshExp = new Date(now.getTime() + jwtProperties.getRefreshTokenExpiration() * 1000L);
 
         Map<String, Object> claims = new HashMap<>();
         claims.put("data", user);
 
         String userId = user.getId().toString();
+
+        PrivateKey privateKey = jwtProperties.getKeyPair().getPrivate();
 
         // 生成访问令牌
         String accessToken = Jwts.builder()
@@ -100,20 +97,19 @@ public class JwtUtils {
                 .signWith(SignatureAlgorithm.RS256, privateKey)
                 .compact();
 
-        return new JwtToken(accessToken, accessTokenExpiration, refreshToken, refreshTokenExpiration);
+        return new JwtToken(accessToken, refreshToken, jwtProperties.getAccessTokenExpiration(), jwtProperties.getRefreshTokenExpiration());
     }
 
     /**
      * 刷新访问令牌
      * @param refreshToken              刷新令牌
-     * @param accessTokenExpiration     访问令牌失效时间
-     * @param keyPair                   RSA私钥对，用于解密、签名
+     * @param jwtProperties             jwt配置
      * @return
      */
-    public static JwtToken refreshToken(String refreshToken, long accessTokenExpiration, KeyPair keyPair) {
-        JwtUser user = getJwtUserByRefreshToken(refreshToken, keyPair.getPublic());
+    public static JwtToken refreshToken(String refreshToken, JwtProperties jwtProperties) {
+        JwtUser user = getJwtUserByRefreshToken(refreshToken, jwtProperties.getKeyPair().getPublic());
         if(user != null){
-            return getToken(user, accessTokenExpiration, keyPair.getPrivate());
+            return getToken(user, jwtProperties);
         }
         return null;
     }

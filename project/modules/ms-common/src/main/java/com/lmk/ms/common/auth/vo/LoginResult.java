@@ -1,5 +1,7 @@
 package com.lmk.ms.common.auth.vo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import com.lmk.ms.common.api.StatusEnum;
 
@@ -9,15 +11,19 @@ import com.lmk.ms.common.api.StatusEnum;
  * @email laomake@hotmail.com
  */
 @Data
+@ApiModel("登录结果")
 public class LoginResult {
 
     /** 状态码 */
+    @ApiModelProperty("状态码")
     protected StatusEnum status;
 
-    /** 登录用户信息 */
+    /** 登录用户 */
+    @ApiModelProperty("登录用户")
     protected LoginUser user;
 
-    /** 用户对象 */
+    /** 访问令牌 */
+    @ApiModelProperty("访问令牌")
     protected JwtToken token;
 
     public LoginResult() {

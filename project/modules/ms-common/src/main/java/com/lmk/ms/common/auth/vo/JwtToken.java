@@ -16,13 +16,13 @@ public class JwtToken {
     String accessToken;
 
     @ApiModelProperty(value = "accessToken过期时间,单位:秒")
-    Long expiresIn;
+    Long accessTokenExpiresIn;
 
     @ApiModelProperty(value = "刷新使用的token")
     String refreshToken;
 
     @ApiModelProperty(value = "refreshToken过期时间,单位:秒")
-    Long refreshExpiresIn;
+    Long refreshTokenExpiresIn;
 
     @ApiModelProperty(value = "token类型")
     String tokenType = "Bearer";
@@ -30,11 +30,11 @@ public class JwtToken {
     public JwtToken() {
     }
 
-    public JwtToken(String accessToken, Long expiresIn, String refreshToken, Long refreshExpiresIn) {
+    public JwtToken(String accessToken, String refreshToken, Long accessTokenExpiresIn, Long refreshTokenExpiresIn) {
         this.accessToken = accessToken;
-        this.expiresIn = expiresIn;
         this.refreshToken = refreshToken;
-        this.refreshExpiresIn = refreshExpiresIn;
+        this.accessTokenExpiresIn = accessTokenExpiresIn;
+        this.refreshTokenExpiresIn = refreshTokenExpiresIn;
     }
 
     public String getAccessToken() {
@@ -45,12 +45,12 @@ public class JwtToken {
         this.accessToken = accessToken;
     }
 
-    public Long getExpiresIn() {
-        return expiresIn;
+    public Long getAccessTokenExpiresIn() {
+        return accessTokenExpiresIn;
     }
 
-    public void setExpiresIn(Long expiresIn) {
-        this.expiresIn = expiresIn;
+    public void setAccessTokenExpiresIn(Long accessTokenExpiresIn) {
+        this.accessTokenExpiresIn = accessTokenExpiresIn;
     }
 
     public String getRefreshToken() {
@@ -61,12 +61,12 @@ public class JwtToken {
         this.refreshToken = refreshToken;
     }
 
-    public Long getRefreshExpiresIn() {
-        return refreshExpiresIn;
+    public Long getRefreshTokenExpiresIn() {
+        return refreshTokenExpiresIn;
     }
 
-    public void setRefreshExpiresIn(Long refreshExpiresIn) {
-        this.refreshExpiresIn = refreshExpiresIn;
+    public void setRefreshTokenExpiresIn(Long refreshTokenExpiresIn) {
+        this.refreshTokenExpiresIn = refreshTokenExpiresIn;
     }
 
     public String getTokenType() {
@@ -79,11 +79,11 @@ public class JwtToken {
 
     @Override
     public String toString() {
-        return "{" +
+        return "JwtToken{" +
                 "accessToken='" + accessToken + '\'' +
-                ", expiresIn=" + expiresIn +
+                ", accessTokenExpiresIn=" + accessTokenExpiresIn +
                 ", refreshToken='" + refreshToken + '\'' +
-                ", refreshExpiresIn=" + refreshExpiresIn +
+                ", refreshTokenExpiresIn=" + refreshTokenExpiresIn +
                 ", tokenType='" + tokenType + '\'' +
                 '}';
     }

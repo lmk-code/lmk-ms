@@ -2,6 +2,9 @@ package com.lmk.ms.common.auth.vo;
 
 import java.io.Serializable;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -19,6 +22,7 @@ import lombok.NoArgsConstructor;
 public class LoginUser implements Serializable {
 
     /** 用户ID */
+    @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty(value = "用户ID")
     protected Long id;
 
@@ -45,54 +49,6 @@ public class LoginUser implements Serializable {
     /** 邮箱 */
     @ApiModelProperty(value = "邮箱")
     protected String email;
-
-    /** 客户ID */
-    @ApiModelProperty(value = "客户ID")
-    protected Long cid;
-
-    /** 区域编码 */
-    @ApiModelProperty(value = "区域编码")
-    protected Long regionId;
-
-    /** 区域类型 */
-    @ApiModelProperty(value = "区域类型")
-    protected String regionType;
-
-    /** 区域名称 */
-    @ApiModelProperty(value = "区域名称")
-    protected String regionTitle;
-
-    /** 角色ID列表 */
-    @ApiModelProperty(value = "角色ID列表")
-    protected List<Long> roleIds;
-
-    /** 角色名称列表 */
-    @ApiModelProperty(value = "角色名称列表")
-    protected List<String> roleNames;
-
-    /** 权限ID列表 */
-    @ApiModelProperty(value = "权限ID列表")
-    protected List<Long> permissionIds;
-
-    /** 权限名称列表 */
-    @ApiModelProperty(value = "权限名称列表")
-    protected List<String> permissionNames;
-
-    /** 系统关联的菜单列表 */
-    @ApiModelProperty(value = "系统关联的菜单列表")
-    protected List<String> menuList;
-
-    /** 是否管理员 */
-    @ApiModelProperty(value = "是否管理员")
-    protected Boolean isAdmin;
-
-    /** 是否超级管理员 */
-    @ApiModelProperty(value = "是否超级管理员")
-    protected Boolean isSuperUser;
-
-    /** 是否罗克佳华人员 */
-    @ApiModelProperty(value = "是否罗克佳华人员")
-    protected Boolean isRkUser;
 
     public LoginUser(Long id, String username) {
         this.id = id;
