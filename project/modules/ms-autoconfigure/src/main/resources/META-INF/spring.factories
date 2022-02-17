@@ -7,5 +7,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.lmk.ms.autoconfigure.auth.AuthAutoconfigure,\
   com.lmk.ms.autoconfigure.cache.CacheAutoconfigure,\
   com.lmk.ms.autoconfigure.notify.AlySmsAutoconfigure,\
+  com.lmk.ms.autoconfigure.tp.WxAutoconfigure,\
   com.lmk.ms.autoconfigure.knife4j.Knife4jAutoconfigure,\
   com.lmk.ms.autoconfigure.mybatis.MybatisPlusAutoconfigure

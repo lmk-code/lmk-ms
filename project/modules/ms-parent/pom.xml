@@ -20,6 +20,7 @@
         <module>../ms-gateway</module>
         <module>../ms-auth</module>
         <module>../ms-notify</module>
+        <module>../ms-tp</module>
     </modules>
 
     <properties>

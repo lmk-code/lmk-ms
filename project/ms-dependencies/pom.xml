@@ -121,6 +121,12 @@
                 <version>${ms.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.lmk.ms</groupId>
+                <artifactId>ms-tp</artifactId>
+                <version>${ms.version}</version>
+            </dependency>
+
             <!-- ms-starters 核心依赖 -->
             <dependency>
                 <groupId>com.lmk.ms</groupId>

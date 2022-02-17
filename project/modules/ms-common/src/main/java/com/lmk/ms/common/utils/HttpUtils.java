@@ -91,6 +91,22 @@ public class HttpUtils {
     }
 
     /**
+     * 向客户端写入纯文本
+     * @param text
+     */
+    public static void writeText(String text){
+        HttpServletResponse response = getHttpServletResponse();
+        response.setStatus(HttpServletResponse.SC_OK);
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=utf-8");
+        try {
+            response.getWriter().write(text);
+        } catch (IOException e) {
+            log.warn("向客户端写入信息出错：", e);
+        }
+    }
+
+    /**
      * 向客户端返回异常信息
      * @param status
      */
