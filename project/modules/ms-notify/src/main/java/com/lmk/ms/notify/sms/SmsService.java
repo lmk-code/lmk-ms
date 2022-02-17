@@ -1,5 +1,7 @@
 package com.lmk.ms.notify.sms;
 
+import java.util.Map;
+
 /**
  * 短信通知服务
  * @author laomake@hotmail.com
@@ -9,9 +11,11 @@ package com.lmk.ms.notify.sms;
 public interface SmsService {
 
     /**
-     * 发送短息验证码
-     * @param mobile
-     * @param code
+     * 发送短信验证码
+     * @param template      模板（代码）
+     * @param parameters    参数
+     * @param mobile        手机号
+     * @return              发送状态码
      */
-    void sendVerifyCode(String mobile, String code);
+    String sendCode(String template, Map<String, Object> parameters, String mobile);
 }

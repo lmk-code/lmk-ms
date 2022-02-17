@@ -20,13 +20,16 @@ public class AlySmsProperties {
     private String accessKeyId;
 
     /** AccessKey Secret */
-        private String accessKeySecret;
+    private String accessKeySecret;
 
     /** 访问的域名 */
     private String endpoint = "dysmsapi.aliyuncs.com";
 
     /** 短信签名 */
     private String signName = "双体系";
+
+    /** 验证码有效时长，单位：分钟 */
+    private Integer expireIn = 2;
 
     /** 验证码短信模板 */
     private String verifyTemplateCode = "SMS_130830117";
@@ -69,6 +72,14 @@ public class AlySmsProperties {
 
     public void setSignName(String signName) {
         this.signName = signName;
+    }
+
+    public Integer getExpireIn() {
+        return expireIn;
+    }
+
+    public void setExpireIn(Integer expireIn) {
+        this.expireIn = expireIn;
     }
 
     public String getVerifyTemplateCode() {

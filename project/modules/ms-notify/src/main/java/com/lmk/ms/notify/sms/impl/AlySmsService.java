@@ -1,6 +1,5 @@
 package com.lmk.ms.notify.sms.impl;
 
-import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,25 +38,25 @@ public class AlySmsService implements SmsService {
     }
 
     @Override
-    public void sendVerifyCode(String mobile, String code){
-        log.info("通过阿里云发送验证码，手机：{}，验证码：{}", mobile, code);
+    public String sendCode(String template, Map<String, Object> parameters, String mobile){
+        String statusCode = null;
+        log.info("通过阿里云发送短信，模板：{}，参数：{}，手机：{}", template, parameters, mobile);
         try {
             Client client = createClient();
 
             SendSmsRequest request = new SendSmsRequest();
             request.setSignName(alySmsProperties.getSignName());
-            request.setTemplateCode(alySmsProperties.getVerifyTemplateCode());
+            request.setTemplateCode(template);
             request.setPhoneNumbers(mobile);
-
-            Map<String, String> params = new HashMap<>();
-            params.put("code", code);
-            request.setTemplateParam(JsonUtils.toJSON(params));
+            request.setTemplateParam(JsonUtils.toJSON(parameters));
 
             SendSmsResponse response = client.sendSms(request);
             SendSmsResponseBody responseBody = response.getBody();
-            log.info("发送结果，Code：{}，RequestId：{}", responseBody.code, responseBody.requestId);
+            statusCode = responseBody.code;
+            log.info("发送结果，Code：{}，RequestId：{}", statusCode, responseBody.requestId);
         } catch (Exception e) {
             log.warn("阿里云短信发送失败：", e);
         }
+        return statusCode;
     }
 }
