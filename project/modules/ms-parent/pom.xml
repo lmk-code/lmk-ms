@@ -19,6 +19,7 @@
         <module>../ms-autoconfigure</module>
         <module>../ms-gateway</module>
         <module>../ms-auth</module>
+        <module>../ms-notify</module>
     </modules>
 
     <properties>

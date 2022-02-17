@@ -35,7 +35,7 @@ public class MsAuthService {
      * @param entity
      */
     public void createBy(RecordEntity entity){
-        entity.setCreateBy(getCurrentUser().getNickname());
+        entity.setCreateBy(getCurrentUser().getUsername());
         entity.setCreateTime(new Date());
     }
 
@@ -44,7 +44,7 @@ public class MsAuthService {
      * @param entity
      */
     public void updateBy(RecordEntity entity){
-        entity.setUpdateBy(getCurrentUser().getNickname());
+        entity.setUpdateBy(getCurrentUser().getUsername());
         entity.setUpdateTime(new Date());
     }
 

@@ -35,6 +35,8 @@
         <jjwt.version>0.9.1</jjwt.version>
         <dom4j.version>1.6.1</dom4j.version>
         <fastjson.version>1.2.79</fastjson.version>
+        <tea-openapi.version>0.2.2</tea-openapi.version>
+        <dysmsapi.version>2.0.9</dysmsapi.version>
         <zxing.version>3.4.1</zxing.version>
         <hystrix-core.vsersion>1.5.18</hystrix-core.vsersion>
         <kaptcha.version>2.3.2</kaptcha.version>
@@ -110,6 +112,12 @@
             <dependency>
                 <groupId>com.lmk.ms</groupId>
                 <artifactId>ms-gateway</artifactId>
+                <version>${ms.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lmk.ms</groupId>
+                <artifactId>ms-notify</artifactId>
                 <version>${ms.version}</version>
             </dependency>
 
@@ -250,6 +258,18 @@
                 <groupId>com.github.penggle</groupId>
                 <artifactId>kaptcha</artifactId>
                 <version>${kaptcha.version}</version>
+            </dependency>
+
+            <!-- 阿里云短信服务 -->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>tea-openapi</artifactId>
+                <version>${tea-openapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>dysmsapi20170525</artifactId>
+                <version>${dysmsapi.version}</version>
             </dependency>
 
             <!-- generate qrcode -->

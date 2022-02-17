@@ -15,4 +15,5 @@ public class JwtTokenPayload {
     private Long iat;
     private Long exp;
     private String sub;
+    private JwtUser data;
 }

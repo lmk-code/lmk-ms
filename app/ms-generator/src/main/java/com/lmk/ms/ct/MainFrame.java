@@ -21,7 +21,7 @@ import com.lmk.ms.ct.support.CodeUtils;
 /**
  * 主窗口
  * @author zhudefu
- * @email zhudefu@rockontrol.com
+ * @email laomake@hotmail.com
  */
 public class MainFrame {
     /** 日志记录器 */

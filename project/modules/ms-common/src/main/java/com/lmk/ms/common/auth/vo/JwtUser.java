@@ -33,15 +33,10 @@ public class JwtUser implements Serializable {
     @ApiModelProperty(value = "用户名")
     private String username;
 
-    /** 昵称 */
-    @ApiModelProperty(value = "昵称")
-    private String nickname;
-
     public JwtUser(LoginUser loginUser) {
         this.id = loginUser.getId();
         this.mobile = loginUser.getMobile();
         this.username = loginUser.getUsername();
-        this.nickname = loginUser.getNickname();
     }
 }
 

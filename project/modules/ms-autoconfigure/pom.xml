@@ -34,6 +34,13 @@
         </dependency>
 
         <dependency>
+            <groupId>com.lmk.ms</groupId>
+            <artifactId>ms-notify</artifactId>
+            <version>${ms.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <optional>true</optional>

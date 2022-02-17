@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 配置文件参数
  * @author zhudefu
- * @email zhudefu@rockontrol.com
+ * @email laomake@hotmail.com
  */
 public class AppProperties implements Serializable {
 

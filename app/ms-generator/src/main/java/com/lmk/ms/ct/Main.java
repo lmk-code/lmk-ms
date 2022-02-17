@@ -3,7 +3,7 @@ package com.lmk.ms.ct;
 /**
  * 主类
  * @author zhudefu
- * @email zhudefu@rockontrol.com
+ * @email laomake@hotmail.com
  */
 public class Main {
     public static void main(String[] args) {
