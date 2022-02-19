@@ -9,12 +9,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.lmk.ms.common.validate.ValidateError;
 
 /**
- * 响应结果
+ * 接口响应对象
  * @author laomake@hotmail.com
  * @version 1.0
  * @date 2021/07/12
  */
-@ApiModel("接口响应对象")
+@ApiModel(value = "ResponseResult", description = "接口响应对象")
 public class ResponseResult<T> {
 
     /** 用于服务端判断的错误代码 */
