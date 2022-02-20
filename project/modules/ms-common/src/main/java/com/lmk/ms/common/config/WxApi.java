@@ -48,8 +48,8 @@ public class WxApi {
     public static final String OAUTH_AUTHORIZE = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=%s&state=%s#wechat_redirect";
 
     /** OAuth获取access_token */
-    public static final String OAUTH_TOKEN = API_SERVER + "/sns/oauth2/access_token";
+    public static final String OAUTH_TOKEN = API_SERVER + "/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code";
 
     /** OAuth获取用户信息 */
-    public static final String OAUTH_USER_INFO = API_SERVER + "/sns/userinfo";
+    public static final String OAUTH_USER_INFO = API_SERVER + "/sns/userinfo?access_token=%s&openid=%s&lang=zh_CN";
 }

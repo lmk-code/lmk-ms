@@ -1,4 +1,4 @@
-package com.lmk.ms.common.tp.dto;
+package com.lmk.ms.common.tp.dto.wx;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,8 +11,8 @@ import lombok.Data;
  * @date 2022/02/17
  */
 @Data
-@ApiModel
-public class WxVerifyParameter {
+@ApiModel(value = "VerifyParameter", description = "微信接入验证参数")
+public class VerifyParameter {
     @ApiModelProperty("微信加密签名")
     private String signature;
 

@@ -15,6 +15,21 @@ public class RedisKey {
     public static final String KEY_JWT_USER = "MS:JWT:User:";
 
     /** 微信访问令牌的缓存KEY */
-    public static final String WG_AK = "MS:WX:AK";
+    public static final String WX_AK = "MS:WX:AK:";
+
+    /** 微信用户授权访问令牌的缓存KEY */
+    public static final String WX_OAUTH_AK = "MS:WX:OAUTH:AK:";
+
+    /** 微信用户授权刷新令牌的缓存KEY */
+    public static final String WX_OAUTH_RK = "MS:WX:OAUTH:RK:";
+
+    /** 微信用户信息的缓存KEY */
+    public static final String WX_OAUTH_USER = "MS:WX:OAUTH:USER:";
+
+    /** 微信登录成功后回跳的地址 */
+    public static final String WX_LOGIN_REDIRECT = "MS:WX:LOGIN:REDIRECT:";
+
+    /** 微信登录成功的用户信息 */
+    public static final String WX_LOGIN_USER = "MS:WX:LOGIN:USER:";
 
 }

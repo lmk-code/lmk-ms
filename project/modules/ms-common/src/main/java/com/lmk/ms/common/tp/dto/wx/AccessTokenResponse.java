@@ -1,4 +1,4 @@
-package com.lmk.ms.common.tp.dto;
+package com.lmk.ms.common.tp.dto.wx;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,8 +11,8 @@ import lombok.Data;
  * @date 2022/02/20
  */
 @Data
-@ApiModel(value = "WxAccessTokenResponse", description = "微信访问令牌返回对象")
-public class WxAccessTokenResponse {
+@ApiModel(value = "AccessTokenResponse", description = "微信访问令牌返回对象")
+public class AccessTokenResponse {
 
     @ApiModelProperty("错误代码")
     private Integer errcode;
