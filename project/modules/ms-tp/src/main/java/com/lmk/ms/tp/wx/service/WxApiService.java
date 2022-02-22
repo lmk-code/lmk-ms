@@ -3,18 +3,19 @@ package com.lmk.ms.tp.wx.service;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
-
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
 import com.lmk.ms.common.cache.GlobalCacheService;
 import com.lmk.ms.common.config.RedisKey;
 import com.lmk.ms.common.config.WxApi;
 import com.lmk.ms.common.tp.dto.TpUserInfo;
 import com.lmk.ms.common.tp.dto.wx.*;
+import com.lmk.ms.common.tp.support.TpType;
 import com.lmk.ms.common.utils.JsonUtils;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.lmk.ms.common.utils.encrypt.TextEncrypt;
 import com.lmk.ms.tp.wx.config.WxProperties;
-import org.springframework.web.client.RestTemplate;
+
 
 /**
  * 微信API服务
@@ -130,6 +131,7 @@ public class WxApiService {
             // 缓存用户信息
             globalCacheService.set(RedisKey.WX_OAUTH_USER + token.getOpenid(), response, 1, TimeUnit.HOURS);
             user = new TpUserInfo();
+            user.setType(TpType.wx);
             user.setOpenId(response.getOpenid());
             user.setNickname(response.getNickname());
             user.setAvatar(response.getHeadimgurl());
@@ -148,9 +150,17 @@ public class WxApiService {
                     user.setGender(0);
                     break;
             }
-
         }
         return user;
     }
 
+    /**
+     * 获取用户绑定表单地址
+     * @param state
+     * @return
+     */
+    public String getUserBindUrl(String state){
+        String url = wxProperties.getUserBindUrl();
+        return url + "/" + state;
+    }
 }

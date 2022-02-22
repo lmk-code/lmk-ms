@@ -26,10 +26,4 @@ public class RedisKey {
     /** 微信用户信息的缓存KEY */
     public static final String WX_OAUTH_USER = "MS:WX:OAUTH:USER:";
 
-    /** 微信登录成功后回跳的地址 */
-    public static final String WX_LOGIN_REDIRECT = "MS:WX:LOGIN:REDIRECT:";
-
-    /** 微信登录成功的用户信息 */
-    public static final String WX_LOGIN_USER = "MS:WX:LOGIN:USER:";
-
 }
