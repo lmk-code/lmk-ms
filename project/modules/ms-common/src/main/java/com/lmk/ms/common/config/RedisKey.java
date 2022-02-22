@@ -23,6 +23,9 @@ public class RedisKey {
     /** 微信用户授权刷新令牌的缓存KEY */
     public static final String WX_OAUTH_RK = "MS:WX:OAUTH:RK:";
 
+    /** 微信用户授权模式 */
+    public static final String WX_USER_INFO_SCOPE = "MS:WX:SCOPE:";
+
     /** 微信用户信息的缓存KEY */
     public static final String WX_OAUTH_USER = "MS:WX:OAUTH:USER:";
 
