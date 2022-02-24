@@ -34,6 +34,12 @@ public class WxProperties {
     /** OAuth获取Code的回调地址 */
     private String authCodeRedirectUrl;
 
+    /** 扫码登录的扫码地址 */
+    private String qrScanUrl;
+
+    /** 扫码获取Code的回调地址 */
+    private String qrScanRedirectUrl;
+
     /** OAuth获取Code的回调地址 */
     private String authState;
 
@@ -78,6 +84,22 @@ public class WxProperties {
 
     public void setAuthCodeRedirectUrl(String authCodeRedirectUrl) {
         this.authCodeRedirectUrl = authCodeRedirectUrl;
+    }
+
+    public String getQrScanUrl() {
+        return qrScanUrl;
+    }
+
+    public void setQrScanUrl(String qrScanUrl) {
+        this.qrScanUrl = qrScanUrl;
+    }
+
+    public String getQrScanRedirectUrl() {
+        return qrScanRedirectUrl;
+    }
+
+    public void setQrScanRedirectUrl(String qrScanRedirectUrl) {
+        this.qrScanRedirectUrl = qrScanRedirectUrl;
     }
 
     public String getAuthState() {

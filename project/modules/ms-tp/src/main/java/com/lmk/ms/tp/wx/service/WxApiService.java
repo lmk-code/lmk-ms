@@ -3,6 +3,9 @@ package com.lmk.ms.tp.wx.service;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
+
+import com.lmk.ms.common.op.dto.QrLogin;
+import com.lmk.ms.common.utils.IdUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
@@ -90,6 +93,15 @@ public class WxApiService {
     }
 
     /**
+     * 微信扫码登录，获取Code的地址
+     * @param sid
+     * @return
+     */
+    public String getQrScanURL(String sid){
+        return String.format(WxApi.OAUTH_AUTHORIZE, wxProperties.getAppId(), wxProperties.getQrScanRedirectUrl(), WxProperties.SCOPE_INFO, sid);
+    }
+
+    /**
      * 通过授权码换取用户AccessToken
      * @param code
      * @return
@@ -156,11 +168,74 @@ public class WxApiService {
 
     /**
      * 获取用户绑定表单地址
+     * @param qrScan    是否来自扫码登录
      * @param state
      * @return
      */
-    public String getUserBindUrl(String state){
+    public String getUserBindUrl(Boolean qrScan, String state){
         String url = wxProperties.getUserBindUrl();
-        return url + "/" + state;
+        url = url + "/" + state;
+        if(qrScan){
+            url += "?scan=true";
+        }
+        return url;
+    }
+
+    /**
+     * 创建微信扫码登录
+     * @param redirectUrl
+     * @return
+     */
+    public QrLogin createWxQrLogin(String redirectUrl) {
+        String sid = IdUtils.snowflakeIdByText();
+        String key = RedisKey.WX_QR_LOGIN + sid;
+
+        QrLogin qrLogin = new QrLogin();
+        qrLogin.setSid(sid);
+        qrLogin.setType(TpType.wx.toString());
+        qrLogin.setStatus(0);
+
+        // 回跳地址
+        if(redirectUrl.contains("?")){
+            redirectUrl = redirectUrl + "&code=" + sid;
+        }else{
+            redirectUrl = redirectUrl + "?code=" + sid;
+        }
+        qrLogin.setRedirectUrl(redirectUrl);
+
+        String scanUrl = wxProperties.getQrScanUrl() + sid;
+        qrLogin.setScanUrl(scanUrl);
+
+        globalCacheService.set(key, qrLogin, 20, TimeUnit.MINUTES); // 缓存会话
+        return qrLogin;
+    }
+
+    /**
+     * 获取扫码登录信息
+     * @param sid
+     * @return
+     */
+    public QrLogin getWxQrLogin(String sid) {
+        String key = RedisKey.WX_QR_LOGIN + sid;
+        return (QrLogin) globalCacheService.get(key);
+    }
+
+    /**
+     * 更新扫码登录信息
+     * @param sid
+     * @param qrLogin
+     */
+    public void setWxQrLogin(String sid, QrLogin qrLogin) {
+        String key = RedisKey.WX_QR_LOGIN + sid;
+        globalCacheService.set(key, qrLogin, 20, TimeUnit.MINUTES); // 缓存会话
+    }
+
+    /**
+     * 删除扫码登录
+     * @param sid
+     */
+    public void deleteWxQrLogin(String sid) {
+        String key = RedisKey.WX_QR_LOGIN + sid;
+        globalCacheService.delete(key);
     }
 }
