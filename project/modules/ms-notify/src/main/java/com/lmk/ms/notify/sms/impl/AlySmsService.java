@@ -42,7 +42,7 @@ public class AlySmsService implements SmsService {
         String statusCode = null;
         log.info("通过阿里云发送短信，模板：{}，参数：{}，手机：{}", template, parameters, mobile);
         if(alySmsProperties.getDev()){
-            log.warn("当前位开发模式，不真实发送短信。");
+            log.warn("当前为开发模式，不会真实发出短信。");
             return null;
         }
         try {
