@@ -98,7 +98,7 @@ public class WxApiService {
 
         String url = String.format(WxApi.JS_TICKET, ak);
         JsTicketResponse response = restTemplate.getForObject(url, JsTicketResponse.class);
-        if(response.getErrcode() != null){
+        if(response.getErrcode() != 0){
             log.error("微信获取JS Ticket失败：{}", response.getErrmsg());
         }else{
             jsTicket = response.getTicket();
