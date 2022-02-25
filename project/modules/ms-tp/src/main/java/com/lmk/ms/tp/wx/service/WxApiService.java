@@ -98,8 +98,15 @@ public class WxApiService {
 
         String url = String.format(WxApi.JS_TICKET, ak);
         JsTicketResponse response = restTemplate.getForObject(url, JsTicketResponse.class);
-        if(response.getErrcode() != 0){
-            log.error("微信获取JS Ticket失败：{}", response.getErrmsg());
+        int errorCode = response.getErrcode();
+        if(errorCode != 0){
+            log.warn("微信获取JS Ticket失败：{}, {}", errorCode, response.getErrmsg());
+            if(40001 == errorCode || 40014 == errorCode){
+                // 清除AccessToken后，重新获取
+                key = RedisKey.WX_AK + wxProperties.getAppId();
+                globalCacheService.delete(key);
+                return getJsTicket();
+            }
         }else{
             jsTicket = response.getTicket();
             globalCacheService.set(key, jsTicket, response.getExpires_in(), TimeUnit.SECONDS);
