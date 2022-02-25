@@ -16,6 +16,9 @@ public class AlySmsProperties {
     /** 是否启用 */
     private Boolean enabled;
 
+    /** 是否为开发模式，开发模式下：通过日志输出，不真实发短信 */
+    private Boolean dev;
+
     /** AccessKey ID */
     private String accessKeyId;
 
@@ -40,6 +43,14 @@ public class AlySmsProperties {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Boolean getDev() {
+        return dev;
+    }
+
+    public void setDev(Boolean dev) {
+        this.dev = dev;
     }
 
     public String getAccessKeyId() {

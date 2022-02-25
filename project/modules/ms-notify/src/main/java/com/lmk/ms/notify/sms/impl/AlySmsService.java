@@ -41,6 +41,10 @@ public class AlySmsService implements SmsService {
     public String sendCode(String template, Map<String, Object> parameters, String mobile){
         String statusCode = null;
         log.info("通过阿里云发送短信，模板：{}，参数：{}，手机：{}", template, parameters, mobile);
+        if(alySmsProperties.getDev()){
+            log.warn("当前位开发模式，不真实发送短信。");
+            return null;
+        }
         try {
             Client client = createClient();
 

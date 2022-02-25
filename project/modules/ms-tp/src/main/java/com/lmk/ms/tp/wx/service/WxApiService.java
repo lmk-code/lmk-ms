@@ -2,6 +2,8 @@ package com.lmk.ms.tp.wx.service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
 import com.lmk.ms.common.op.dto.QrLogin;
@@ -79,6 +81,60 @@ public class WxApiService {
             globalCacheService.set(key, ak, response.getExpires_in(), TimeUnit.SECONDS);
         }
         return ak;
+    }
+
+    /**
+     * 获取微信JS Ticket
+     * @return
+     */
+    public String getJsTicket(){
+        String key = RedisKey.WX_JS_TICKET + wxProperties.getAppId();
+        String jsTicket = (String) globalCacheService.get(key);
+        if(jsTicket != null){
+            return jsTicket;
+        }
+
+        String ak = getAccessToken();
+
+        String url = String.format(WxApi.JS_TICKET, ak);
+        JsTicketResponse response = restTemplate.getForObject(url, JsTicketResponse.class);
+        if(response.getErrcode() != null){
+            log.error("微信获取JS Ticket失败：{}", response.getErrmsg());
+        }else{
+            jsTicket = response.getTicket();
+            globalCacheService.set(key, jsTicket, response.getExpires_in(), TimeUnit.SECONDS);
+        }
+        return jsTicket;
+    }
+
+    /**
+     * 获取微信页面JS 签名信息
+     * @return
+     */
+    public WxJsConfig getJsConfig(String url){
+        String jsTicket = getJsTicket();
+        String timestamp = System.currentTimeMillis() + "";
+        String noncestr = TextEncrypt.nonceString(16);
+
+        LinkedHashMap<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("noncestr", noncestr);
+        parameters.put("jsapi_ticket", jsTicket);
+        parameters.put("timestamp", timestamp);
+        parameters.put("url", url);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("jsapi_ticket=").append(jsTicket)
+                .append("&noncestr=").append(noncestr)
+                .append("&timestamp=").append(timestamp)
+                .append("&url=").append(url);
+
+        String signature = TextEncrypt.sha1(sb.toString());
+        WxJsConfig jsConfig = new WxJsConfig();
+        jsConfig.setAppId(wxProperties.getAppId());
+        jsConfig.setTimestamp(timestamp);
+        jsConfig.setNonceStr(noncestr);
+        jsConfig.setSignature(signature);
+        return jsConfig;
     }
 
     /**

@@ -15,7 +15,7 @@ public class WxApi {
     public static final String ACCESS_TOKEN = API_SERVER + "/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s";
 
     /** 获取jsApiTicket */
-    public static final String JS_TICKET = API_SERVER + "/cgi-bin/ticket/getticket?type=jsapi";
+    public static final String JS_TICKET = API_SERVER + "/cgi-bin/ticket/getticket?access_token=%s&type=jsapi";
 
     /** 获取微信服务器IP */
     public static final String SERVER_IP = API_SERVER + "/cgi-bin/getcallbackip";

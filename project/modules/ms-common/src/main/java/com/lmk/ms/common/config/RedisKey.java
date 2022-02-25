@@ -17,6 +17,9 @@ public class RedisKey {
     /** 微信访问令牌的缓存KEY */
     public static final String WX_AK = "MS:WX:AK:";
 
+    /** 微信JS Ticket的缓存KEY */
+    public static final String WX_JS_TICKET = "MS:WX:JS:";
+
     /** 微信用户授权访问令牌的缓存KEY */
     public static final String WX_OAUTH_AK = "MS:WX:OAUTH:AK:";
 
